@@ -20,8 +20,9 @@ module.exports = {
       colors: {
         primary: "#0179FE",
         gray: "#667085",
-        "success-bg": "#F6FEF9",
-        "error-bg":"#FFFBFA",
+        "success": "#039855",
+        "error":"#DD2590",
+        "pending": "#d97706",
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
