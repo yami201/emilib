@@ -1,4 +1,4 @@
-import { createAuthor, getAuthors, updateAuthor, deleteAuthor, getAuthorPageCount } from '../lib/neoCrud/author';
+import { createAuthor, getAuthors, updateAuthor, deleteAuthor, getAllAuthors} from '../../lib/neoCrud/author';
 
 export default async function handler(req, res) {
     const { method } = req;
@@ -13,15 +13,27 @@ export default async function handler(req, res) {
                 res.status(500).json({ error: "Error creating author" });
             }
             break;
+            case 'GET':
+                try {
+                    const { name, bookTitle, limit = 10, skip = 0 } = req.query;
+                    if (name || bookTitle) {
+                        const authors = await getAuthors({ 
+                            name, 
+                            bookTitle, 
+                            limit: parseInt(limit, 10), 
+                            skip: parseInt(skip, 10) 
+                        });
+                        res.status(200).json(authors);
+                    } else {
+                        const authors = await getAllAuthors();
+                        res.status(200).json(authors);
+                    }
+                } catch (error) {
+                    res.status(500).json({ error: "Error getting authors" });
+                }
+                break;
         case 'GET':
-            try {
-                const { name, bookTitle, limit, skip } = req.query;
-                const authors = await getAuthors({ name, bookTitle, limit: parseInt(limit), skip: parseInt(skip) });
-                res.status(200).json(authors);
-            } catch (error) {
-                res.status(500).json({ error: "Error getting authors" });
-            }
-            break;
+            
         case 'PUT':
             try {
                 const { name, updates } = req.body;
