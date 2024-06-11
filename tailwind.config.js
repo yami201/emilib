@@ -17,12 +17,19 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        'custom': '0 4px 6px rgba(0, 0, 0, 0.1)',
+      },
       colors: {
         primary: "#0179FE",
         gray: "#667085",
         "success": "#039855",
         "error":"#DD2590",
         "pending": "#d97706",
+        'blue-gradient-start': '#0179FE', 
+        'blue-gradient-end': '#4893FF', 
+
+        
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
