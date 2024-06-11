@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import { createAuthor } from "@/lib/actions/authors";
 import { useState } from "react";
 import Image from 'next/image'
-
+import { toast } from "react-toast";
 
 const CreateAuthorModal = ({ closeModal }) => {
     const [state, formAction] = useFormState(createAuthor, {
@@ -15,6 +15,10 @@ const CreateAuthorModal = ({ closeModal }) => {
 
     const reload = () => {
         window.location.reload()
+    }
+
+    if(state.message === 'error') {
+        toast.error(state.data)
     }
     if (state.message === 'success') {
         return (

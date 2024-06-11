@@ -3,12 +3,17 @@
 import Input from "../ui/Input";
 import { useFormState } from "react-dom";
 import { createLoan } from "@/lib/actions/loans";
+import { toast } from "react-toast";
 const CreateLoanModal = ({ closeModal }) => {
     const [state, formAction] = useFormState(createLoan, {
         message: '',
     })
     const reload = () => {
         window.location.reload()
+    }
+
+    if(state.message === 'error') {
+        toast.error(state.data)
     }
 
     if (state.message === 'success') {

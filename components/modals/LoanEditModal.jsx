@@ -4,7 +4,7 @@
 import Input from "../ui/Input";
 import { useFormState } from 'react-dom';
 import { updateLoan } from '@/lib/actions/loans';
-
+import { toast } from "react-toast";
 const status_options = [
     {
         value: 'active',
@@ -24,6 +24,10 @@ const LoanEditModal = ({ loan, closeModal }) => {
     const [state, formAction] = useFormState(updateLoan, {
         message: ''
     })
+
+    if(state.message === 'error') {
+        toast.error(state.data)
+    }
 
     const reload = () => {
         window.location.reload()

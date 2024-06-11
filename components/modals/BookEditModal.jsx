@@ -5,6 +5,7 @@ import Input from "../ui/Input";
 import { useFormState } from "react-dom";
 import Image from "next/image";
 import { useState } from "react";
+import { toast } from "react-toast";
 
 const BookEdit = ({ book, closeModal, setBookData }) => {
     const [state, formAction] = useFormState(updateBook, {
@@ -15,6 +16,10 @@ const BookEdit = ({ book, closeModal, setBookData }) => {
     const uploadImage = async (e) => {
         const file = e.target.files[0]
         setCover(URL.createObjectURL(file))
+    }
+
+    if(state.message === 'error') {
+        toast.error(state.data)
     }
 
     if (state.message === 'success') {

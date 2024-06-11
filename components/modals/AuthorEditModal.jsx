@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { updateAuthor } from "@/lib/actions/authors";
+import { toast } from "react-toast";
 
 
 const AuthordEditModal = ({ author, closeModal }) => {
@@ -16,6 +17,9 @@ const AuthordEditModal = ({ author, closeModal }) => {
         window.location.reload()
     }
     
+    if(state.message === 'error') {
+        toast.error(state.data)
+    }
 
     if (state.message === 'success') {
         return (
@@ -56,6 +60,7 @@ const AuthordEditModal = ({ author, closeModal }) => {
                 <button type="button" onClick={closeModal} className="bg-secondary text-white px-4 py-2 rounded-lg">Cancel</button>
             </div>
         </form>
+        
     );
 }
 

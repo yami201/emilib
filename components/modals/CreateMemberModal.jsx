@@ -5,6 +5,7 @@ import { useFormState } from "react-dom";
 import { createMember } from "@/lib/actions/members";
 import { useState } from "react";
 import Image from 'next/image'
+import { toast } from "react-toast";
 const CreateMemberModal = ({closeModal}) => {
     const [state, formAction] = useFormState(createMember, {
         message: '',
@@ -14,6 +15,10 @@ const CreateMemberModal = ({closeModal}) => {
     const reload = () => {
         window.location.reload()
     }
+
+    if(state.message === 'error') {
+        toast.error(state.data)
+    }
     if(state.message === 'success'){
         return (
             <div className="flex flex-col items-center gap-6">
@@ -22,6 +27,8 @@ const CreateMemberModal = ({closeModal}) => {
             </div>
         )
     }
+
+
     const uploadImage = (e) => {
         const file = e.target.files[0]
         const reader = new FileReader()

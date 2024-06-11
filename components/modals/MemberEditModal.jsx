@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { updateMember } from "@/lib/actions/members";
-
+import { toast } from "react-toast";
 const MemberEditModal = ({member, closeModal }) => {
     const [state, formAction] = useFormState(updateMember, {
         message: '',
@@ -13,6 +13,9 @@ const MemberEditModal = ({member, closeModal }) => {
 
     const reload = () => {
         window.location.reload()
+    }
+    if(state.message === 'error') {
+        toast.error(state.data)
     }
 
     if(state.message === 'success') {

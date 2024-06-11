@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import Image from "next/image";
 import { useState } from "react";
 import { createBook } from "@/lib/actions/books";
-
+import { toast } from "react-toast";
 
 
 const CreateBook = ({closeModal}) => {
@@ -18,6 +18,9 @@ const CreateBook = ({closeModal}) => {
         window.location.reload()
     }
 
+    if(state.message === 'error') {
+        toast.error(state.data)
+    }
     if (state.message === 'success') {
         return (
             <div className="flex flex-col items-center gap-6">
