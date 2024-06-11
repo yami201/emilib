@@ -1,4 +1,4 @@
-const{ createBook, getBooks, updateBook, deleteBook, getAllBooks }  = require('../../lib/neoCrud/book');
+const { createBook, getBooks, updateBook, deleteBook, getAllBooks }  = require('../../lib/neoCrud/book');
 
 export default async function handler(req, res) {
     const { method } = req;
@@ -6,19 +6,20 @@ export default async function handler(req, res) {
     switch (method) {
         case 'POST':
             try {
-                const { title, isbn, quantity } = req.body;
-                const book = await createBook(title, isbn, quantity);
+                const { title, isbn, initialQuantity, bookCover, authorName, authorImage } = req.body;
+                const book = await createBook(title, isbn, initialQuantity, bookCover, authorName, authorImage);
                 res.status(201).json(book);
             } catch (error) {
                 res.status(500).json({ error: "Error creating book" });
             }
             break;
+
         case 'GET':
             try {
-                const { name, author, isbn, outOfStock, limit, skip } = req.query;
-                if (name || author || isbn || outOfStock || limit || skip) {
+                const { title, author, isbn, outOfStock, limit = 10, skip = 0 } = req.query;
+                if (title || author || isbn || outOfStock) {
                     const books = await getBooks({ 
-                        name, 
+                        title, 
                         author, 
                         isbn, 
                         outOfStock: outOfStock === 'true', 
@@ -34,28 +35,31 @@ export default async function handler(req, res) {
                 res.status(500).json({ error: "Error getting books" });
             }
             break;
+
         case 'PUT':
             try {
-                const { title, updates } = req.body;
-                const book = await updateBook(title, updates);
+                const { isbn, updates } = req.body;
+                const book = await updateBook(isbn, updates);
                 res.status(200).json(book);
             } catch (error) {
                 res.status(500).json({ error: "Error updating book" });
             }
             break;
-            case 'DELETE':
-                try {
-                    const { title } = req.query;
-                    if (!title) {
-                        res.status(400).json({ error: "Title parameter is required" });
-                        return;
-                    }
-                    await deleteBook(title);
-                    res.status(204).end();
-                } catch (error) {
-                    res.status(500).json({ error: "Error deleting book" });
+
+        case 'DELETE':
+            try {
+                const { isbn } = req.query;
+                if (!isbn) {
+                    res.status(400).json({ error: "ISBN parameter is required" });
+                    return;
                 }
-                break;            
+                await deleteBook(isbn);
+                res.status(204).end();
+            } catch (error) {
+                res.status(500).json({ error: "Error deleting book" });
+            }
+            break;
+
         default:
             res.setHeader('Allow', ['POST', 'GET', 'PUT', 'DELETE']);
             res.status(405).end(`Method ${method} Not Allowed`);
