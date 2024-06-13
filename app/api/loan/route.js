@@ -1,4 +1,4 @@
-import {createLoan, findLoansByQuery, getLoans, updateLoan} from "@/lib/loanDb";
+import {createLoan, findLoansByQuery, getLoans, updateLoan} from "@/lib/mongo/db/loans";
 
 export async function GET(request) {
     let loans;
@@ -9,7 +9,8 @@ export async function GET(request) {
         query[key] = value;
     });
 
-    if (query) {
+
+    if (Object.keys(query).length!==0) {
         loans = await findLoansByQuery(query);
     } else {
         loans = await getLoans();

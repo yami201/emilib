@@ -1,4 +1,4 @@
-import {createMember, findMembersByQuery, getMembers, updateMember} from "@/lib/membersDb";
+import {createMember, findMembersByQuery, getMembers, updateMember} from "@/lib/mongo/db/members";
 
 export async function GET(request) {
     let members = await getMembers();
@@ -23,10 +23,12 @@ export async function GET(request) {
 export async function POST(request) {
     try {
         const body = await request.json();
-        let member = await createMember(body)
-        return new Response("member created", {status: 201})
+       const member = await createMember(body)
+        return new Response(JSON.stringify(member), {
+            status: 201
+        })
     } catch (error) {
-        return new Response(`error: ${error.message}`, {
+        return new Response(JSON.stringify({ message:`Error: ${error.message}`}), {
             status: 400,
         })
     }

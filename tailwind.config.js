@@ -17,8 +17,13 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        inter: "var(--font-inter)",
+        "ibm-plex-serif": "var(--font-ibm-plex-serif)",
+      },
       colors: {
         primary: "#0179FE",
+        secondary: "#00214F",
         gray: "#667085",
         "success": "#039855",
         "error":"#DD2590",
