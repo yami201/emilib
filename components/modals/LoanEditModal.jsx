@@ -1,7 +1,7 @@
 'use client'
 
 
-import Input from "../ui/Input";
+import Input from "../ui/CustomInput";
 import { useFormState } from 'react-dom';
 import { updateLoan } from '@/lib/actions/loans';
 import { toast } from "react-toast";

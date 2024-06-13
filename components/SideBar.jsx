@@ -4,9 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Home, Member, Loan, Author } from "@/components/ui/icons";
 import { usePathname } from "next/navigation";
-import UserTab from "./UserTab";
 
-const SideBar = () => {
+const SideBar = ({children}) => {
     const path = usePathname();
 
     const links = [
@@ -33,7 +32,7 @@ const SideBar = () => {
     ];
 
     return (
-        <div className="h-full pt-6 px-2 w-64 flex flex-col border-r border-slate-100 justify-between">
+        <div className="h-full pt-6 px-2 w-72 flex flex-col border-r border-slate-100 justify-between">
             <div>
                 <div className="flex w-full items-center gap-6">
                     <Image src="/logo.png" alt="logo" width={60} height={60} />
@@ -48,7 +47,7 @@ const SideBar = () => {
                     ))}
                 </ul>
             </div>
-            <UserTab />
+            {children}
         </div>
     );
 }

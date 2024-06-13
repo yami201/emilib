@@ -1,4 +1,4 @@
-import Input from "../ui/Input";
+import Input from "../ui/CustomInput";
 
 import Image from "next/image";
 import { useState } from "react";

@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        'custom': '0 4px 6px rgba(0, 0, 0, 0.1)',
+      },
       fontFamily: {
         inter: "var(--font-inter)",
         "ibm-plex-serif": "var(--font-ibm-plex-serif)",
@@ -28,6 +31,10 @@ module.exports = {
         "success": "#039855",
         "error":"#DD2590",
         "pending": "#d97706",
+        'blue-gradient-start': '#0179FE', 
+        'blue-gradient-end': '#4893FF', 
+
+        
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

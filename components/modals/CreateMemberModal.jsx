@@ -1,6 +1,6 @@
 "use client"
 
-import Input from "../ui/Input";
+import Input from "../ui/CustomInput";
 import { useFormState } from "react-dom";
 import { createMember } from "@/lib/actions/members";
 import { useState } from "react";

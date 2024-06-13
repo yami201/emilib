@@ -1,6 +1,6 @@
 "use client"
 
-import Input from "../ui/Input";
+import Input from "../ui/CustomInput";
 import { useFormState } from "react-dom";
 import { createAuthor } from "@/lib/actions/authors";
 import { useState } from "react";

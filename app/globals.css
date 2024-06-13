@@ -2,6 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .text-12 {
+    @apply text-[12px] leading-[16px];
+  }
+
+  .text-14 {
+    @apply text-[14px] leading-[20px];
+  }
+
+  .text-16 {
+    @apply text-[16px] leading-[24px];
+  }
+ 
+  .text-18 {
+    @apply text-[18px] leading-[22px];
+  }
+
+  .text-20 {
+    @apply text-[20px] leading-[24px];
+  }
+
+  .text-24 {
+    @apply text-[24px] leading-[30px];
+  }
+
+  .text-26 {
+    @apply text-[26px] leading-[32px];
+  }
+
+  .text-30 {
+    @apply text-[30px] leading-[38px];
+  }
+
+  .text-36 {
+    @apply text-[36px] leading-[44px];
+  }
+
+
+  .input-class {
+    @apply text-16 placeholder:text-16 rounded-lg border border-slate-300 text-slate-900 placeholder:text-slate-500;
+  }
+  
+  .auth-form {
+    @apply flex min-h-screen w-full max-w-[420px] flex-col justify-center gap-5 py-10 md:gap-8;
+  }
+
+  .form-item {
+    @apply flex flex-col gap-1.5;
+  }
+
+  .form-label {
+    @apply text-14 w-full max-w-[280px] font-medium text-slate-700;
+  }
+
+  .form-message {
+    @apply text-12 text-red-500;
+  }
+
+  .form-btn {
+    @apply text-16 rounded-lg border font-semibold text-white 
+    bg-gradient-to-r from-blue-gradient-start to-blue-gradient-end shadow-custom;
+  }
+
+  .form-link {
+    @apply text-14 cursor-pointer font-medium text-blue-gradient-start;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -18,7 +86,7 @@
 
     --secondary: 215 100% 15%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
+    
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 

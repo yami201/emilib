@@ -1,6 +1,6 @@
 "use client"
 
-import Input from "../ui/Input";
+import Input from "../ui/CustomInput";
 import { useFormState } from "react-dom";
 import Image from "next/image";
 import { useState } from "react";

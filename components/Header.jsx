@@ -1,5 +1,9 @@
+"use server"
+import { headers } from "next/headers";
 const Header = () => {
-    const username = "John Doe";
+    const headerList = headers()
+    const user = JSON.parse(headerList.get('user'))
+    const username = user.name;
     return ( 
         <div
             className="pb-4">
